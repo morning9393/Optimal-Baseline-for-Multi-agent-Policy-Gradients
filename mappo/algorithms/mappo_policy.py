@@ -2,11 +2,11 @@ import torch
 import numpy as np
 import torch.nn.functional as F
 import torch.optim.lr_scheduler as lr_scheduler
-from mappo.algorithms.r_mappo.algorithm.r_actor_critic import R_Actor, R_Critic, R_Q_Critic
+from mappo.algorithms.actor_critic import R_Actor, R_Q_Critic
 from mappo.utils.util import update_linear_schedule
 
 
-class R_MAPPOPolicy:
+class Policy:
     """
     MAPPO Policy  class. Wraps actor and critic networks to compute actions and value function predictions.
 

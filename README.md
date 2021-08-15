@@ -30,7 +30,7 @@ cd mappo/scripts
 ./train_mujoco.sh  # run with Multi-agent MuJoCo
 ./train_smac.sh  # run with StarCraft II
 ```
-If you would like to change the configs of experiments, you could modify sh files or look for config files for more details. e.g. For SMAC, they're located in mappo/config/config_smac.py
+If you would like to change the configs of experiments, you could modify sh files or look for config files for more details. e.g. For SMAC, they're located in mappo/config/config_smac.py (--use_ob is the switch of OB)
 
 ## Example PyTorch-like pseudocode for applying OB
 

@@ -6,7 +6,7 @@ from mappo.utils.popart import PopArt
 from mappo.algorithms.utils.util import check
 
 
-class R_MAPPO:
+class Trainer:
     """
     Trainer class for MAPPO to update policies.
     :param args: (argparse.Namespace) arguments containing relevant model, policy, and env information.
@@ -164,10 +164,8 @@ class R_MAPPO:
         mean_advantages = np.nanmean(advantages_copy)
         std_advantages = np.nanstd(advantages_copy)
         advantages = (advantages - mean_advantages) / (std_advantages + 1e-5)
-        # advantages = advantages / std_advantages
 
         train_info = {}
-
         train_info['value_loss'] = 0
         train_info['policy_loss'] = 0
         train_info['dist_entropy'] = 0

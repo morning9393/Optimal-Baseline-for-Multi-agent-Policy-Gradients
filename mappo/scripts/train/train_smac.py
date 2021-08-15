@@ -15,8 +15,8 @@ from mappo.envs.starcraft2.smac_maps import get_map_params
 from mappo.envs.env_wrappers import ShareSubprocVecEnv, ShareDummyVecEnv
 from mappo.runner.shared.smac_runner import SMACRunner as Runner
 
-"""Train script for SMAC."""
 
+"""Train script for SMAC."""
 def make_train_env(all_args):
     def get_env_fn(rank):
         def init_env():
