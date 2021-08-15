@@ -105,6 +105,7 @@ class R_MAPPO:
                                                                               rnn_states_critic_batch,
                                                                               actions_batch,
                                                                               masks_batch,
+                                                                              available_actions=available_actions_batch,
                                                                               active_masks=active_masks_batch)
         # actor update
         imp_weights = torch.exp(action_log_probs - old_action_log_probs_batch)

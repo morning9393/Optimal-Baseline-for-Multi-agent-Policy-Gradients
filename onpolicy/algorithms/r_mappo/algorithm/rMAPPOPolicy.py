@@ -188,8 +188,8 @@ class R_MAPPOPolicy:
         else:
             qs, _ = self.critic(cent_obs, rnn_states_critic, masks)
             if self.use_ob:
-                # qs = qs.gather(-1, torch.tensor(action, dtype=torch.int64))
-                qs = qs.gather(-1, actions)
+                qs = qs.gather(-1, torch.tensor(action, dtype=torch.int64))
+                # qs = qs.gather(-1, actions)
         return qs, action_log_probs, dist_entropy
 
     def act(self, obs, rnn_states_actor, masks, available_actions=None, deterministic=False):

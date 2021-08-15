@@ -179,24 +179,15 @@ class SharedReplayBuffer(object):
         """
         self.value_preds[-1] = next_value
         self.returns[-1] = next_value
-        gae = 0
         for step in reversed(range(self.rewards.shape[0])):
             if self._use_ob:
-                # delta = self.rewards[step] + self.gamma * self.value_preds[step + 1] * self.masks[step + 1] - \
-                #         self.value_preds[step]
-                # gae = delta + self.gamma * self.gae_lambda * self.masks[step + 1] * gae
-                # self.returns[step] = gae + self.value_preds[step]
-                # self.adv[step] = gae + self.value_preds[step] - self.ob[step]
-
                 self.adv[step] = self.rewards[step] + self.gamma * self.returns[step + 1] * \
                                  self.masks[step + 1] - self.ob[step]
-                self.returns[step] = self.returns[step + 1] * self.gamma * self.masks[step + 1] + self.rewards[step]
             else:
                 self.adv[step] = self.rewards[step] + self.gamma * self.returns[step + 1] * \
                                  self.masks[step + 1] - self.value_preds[step]
-                self.returns[step] = self.returns[step + 1] * self.gamma * self.masks[step + 1] + self.rewards[step]
 
-            # self.returns[step] = self.returns[step + 1] * self.gamma * self.masks[step + 1] + self.rewards[step]
+            self.returns[step] = self.returns[step + 1] * self.gamma * self.masks[step + 1] + self.rewards[step]
 
     def statistics_adv(self, adv):
         means, stds = [], []
