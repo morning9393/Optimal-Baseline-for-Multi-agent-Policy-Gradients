@@ -8,7 +8,6 @@ conda create -n ob python=3.9
 conda activate ob
 pip install -r requirements.txt
 conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch -c nvidia
-pip install -e .
 ```
 
 ### Multi-agent MuJoCo
@@ -27,11 +26,11 @@ Or you could install them manually to other path you like, just follow here: htt
 ## How to run
 When your environment is ready, you could run shell scripts provided. For example:
 ``` Bash
-cd onpolicy/scripts
+cd mappo/scripts
 ./train_mujoco.sh  # run with Multi-agent MuJoCo
 ./train_smac.sh  # run with StarCraft II
 ```
-If you would like to change the configs of experiments, you could modify sh files or look for config files for more details. e.g. For SMAC, they're located in onpolicy/config/config_smac.py
+If you would like to change the configs of experiments, you could modify sh files or look for config files for more details. e.g. For SMAC, they're located in mappo/config/config_smac.py
 
 ## Example PyTorch-like pseudocode for applying OB
 
