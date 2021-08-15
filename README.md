@@ -33,6 +33,69 @@ cd onpolicy/scripts
 ```
 If you would like to change the configs of experiments, you could modify sh files or look for config files for more details. e.g. For SMAC, they're located in onpolicy/config/config_smac.py
 
+## Example PyTorch-like pseudocode for applying OB
+
+### Discrete
+```python
+import torch, torch.nn.functional as F
+
+# x: batch of row vectors to normalise to probability mass
+normalize = lambda x: F.normalize(x, p=1, dim=-1)
+
+# q: Q values of actions of agent i 
+# pi: policy of agent i
+def optimal_baseline(q, pi):
+    M = torch.norm(pi, dim=-1, keepdim=True) ** 2 + 1 
+    xweight = normalize((M - 2 * pi) * pi)
+    return (xweight * q).sum(-1)
+
+# compute the policy and sample an action from it
+a, pi = actor(obs)
+q = critic(obs)
+
+#compute OB
+ob = optimal_baseline(q, pi)
+
+# use OB to construct the loss
+q = q.gather(-1, a)
+pi = pi.gather(-1, a)
+X = q - ob
+loss = -(X * torch.log(pi)).mean()
+```
+
+### Continuous
+```python
+import torch, torch.nn.functional as F
+
+# x: batch of row vectors to normalise to probability mass
+normalize = lambda x: F.normalize(x, p=1, dim=-1)
+
+# a: sampled actions of agent i
+# q: Q values of the sampled actions
+# mu, std: parameters of the Gaussian policy of agent i
+def optimal_baseline(a, q, mu, std):
+    mu_term = torch.norm((a - mu)/std**2, dim=-1)
+    std_term = torch.norm(((a - mu)**2 - std**2)/std**3, dim=-1)
+    xweight = normalize(mu_term**2 + std_term**2)
+    return (xweight * q).sum(-1)
+
+# normal sampling step, where log_pi is the log probability of a
+a, log_pi = actor(obs, deterministic=False)
+q = critic(obs, a)
+
+# resample m (e.g., m=1000) actions for the observation
+obs_m = obs.unsqueeze(0).repeat(m, 1)
+a_m, mu_m, std_m = actor(obs, deterministic=False)
+
+# approximate OB
+q_m = critic(obs, a_m)
+ob = optimal_baseline(a_m, q_m, mu_m, std_m)
+
+# use OB to construct the loss
+X = q - ob
+loss = -(X * log_pi).mean()
+```
+
 ## Some results
 
 ### SMAC
