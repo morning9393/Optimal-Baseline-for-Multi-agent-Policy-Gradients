@@ -7,7 +7,7 @@ import setproctitle
 import numpy as np
 from pathlib import Path
 import torch
-from onpolicy.config_mujoco import get_config
+from onpolicy.config.config_mujoco import get_config
 from onpolicy.envs.ma_mujoco.multiagent_mujoco.mujoco_multi import MujocoMulti
 from onpolicy.runner.shared.mujoco_runner import MujocoRunner as Runner
 # from onpolicy.envs.starcraft2.StarCraft2_Env import StarCraft2Env

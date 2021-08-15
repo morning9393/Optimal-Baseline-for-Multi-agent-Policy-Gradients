@@ -13,7 +13,7 @@ class Scenario(BaseScenario):
         # add agents
         world.num_agents = args.num_agents  # 2
         assert world.num_agents == 2, (
-            "only 2 agents is supported, check the config.py.")
+            "only 2 agents is supported, check the config_default.py.")
         world.agents = [Agent() for i in range(world.num_agents)]
         for i, agent in enumerate(world.agents):
             agent.name = 'agent %d' % i

@@ -7,7 +7,7 @@ import setproctitle
 import numpy as np
 from pathlib import Path
 import torch
-from onpolicy.config_smac import get_config
+from onpolicy.config.config_smac import get_config
 from onpolicy.envs.starcraft2.StarCraft2_Env import StarCraft2Env
 from onpolicy.envs.starcraft2.smac_maps import get_map_params
 from onpolicy.envs.env_wrappers import ShareSubprocVecEnv, ShareDummyVecEnv
