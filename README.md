@@ -1,5 +1,5 @@
 # Settling-the-Variance-of-Multi-Agent-Policy-Gradients
-Describe in the paper "Settling the Variance of Multi-Agent Policy Gradients", this repository applies the optimal baseline (OB) technique to MAPPO algorithms and tests on SMAC & Multi-agent MuJoCo, aiming to stabilise training and improve performance. 
+Describe in the paper "Settling the Variance of Multi-Agent Policy Gradients", this repository applies the optimal baseline (OB) technique to MAPPO/COMA algorithms and tests on SMAC & Multi-agent MuJoCo, aiming to stabilise training and improve performance. 
 
 ## Installation
 ### Create environment
@@ -27,10 +27,13 @@ Or you could install them manually to other path you like, just follow here: htt
 When your environment is ready, you could run shell scripts provided. For example:
 ``` Bash
 cd mappo/scripts
-./train_mujoco.sh  # run with Multi-agent MuJoCo
-./train_smac.sh  # run with StarCraft II
+./train_mujoco.sh  # run with MAPPO on Multi-agent MuJoCo
+./train_smac.sh  # run with MAPPO on StarCraft II
+
+cd coma
+./train_smac.sh  # run with COMA on StarCraft II
 ```
-If you would like to change the configs of experiments, you could modify sh files or look for config files for more details. e.g. For SMAC, they're located in mappo/config/config_smac.py (--use_ob is the switch of OB)
+If you would like to change the configs of experiments, you could modify sh files or look for config files for more details. e.g. For MAPPO on SMAC, they're located in mappo/config/config_smac.py (--use_ob is the switch of OB)
 
 ## Example PyTorch-like pseudocode for applying OB
 
@@ -97,12 +100,16 @@ loss = -(X * log_pi).mean()
 
 ## Some results
 
-### SMAC
+### SMAC on COMA
 
-<img src="results/6h8z.png" width="500" >
+<img src="plots/3m.png" width="500" >
 
-### Multi-agent MuJoCo
+### SMAC on MAPPO
 
-<img src="results/halfcheetah.png" width="500" >
+<img src="plots/6h8z.png" width="500" >
+
+### Multi-agent MuJoCo on MAPPO
+
+<img src="PLOTS/halfcheetah.png" width="500" >
 
 
