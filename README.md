@@ -110,6 +110,6 @@ loss = -(X * log_pi).mean()
 
 ### Multi-agent MuJoCo on MAPPO
 
-<img src="PLOTS/halfcheetah.png" width="500" >
+<img src="plots/halfcheetah.png" width="500" >
 
 
