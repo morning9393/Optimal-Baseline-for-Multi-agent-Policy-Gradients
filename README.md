@@ -102,14 +102,14 @@ loss = -(X * log_pi).mean()
 
 ### SMAC on COMA
 
-<img src="plots/3m.png" width="500" >
+<img src="plots/coma_smac.png" width="500" >
 
 ### SMAC on MAPPO
 
-<img src="plots/6h8z.png" width="500" >
+<img src="plots/mappo_smac.png" width="500" >
 
 ### Multi-agent MuJoCo on MAPPO
 
-<img src="PLOTS/halfcheetah.png" width="500" >
+<img src="PLOTS/mappo_mujoco.png" width="500" >
 
 
