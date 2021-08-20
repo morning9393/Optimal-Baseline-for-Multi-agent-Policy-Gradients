@@ -1,5 +1,5 @@
 # Settling-the-Variance-of-Multi-Agent-Policy-Gradients
-Describe in the paper "Settling the Variance of Multi-Agent Policy Gradients", this repository applies the optimal baseline (OB) technique to MAPPO/COMA algorithms and tests on SMAC & Multi-agent MuJoCo, aiming to stabilise training and improve performance. 
+Describe in the paper "[Settling the Variance of Multi-Agent Policy Gradients](http://arxiv.org/abs/2108.08612)", this repository applies the optimal baseline (OB) technique to MAPPO/COMA algorithms and tests on SMAC & Multi-agent MuJoCo, aiming to stabilise training and improve performance. 
 
 ## Installation
 ### Create environment
